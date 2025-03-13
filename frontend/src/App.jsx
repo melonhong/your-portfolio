@@ -18,7 +18,7 @@ function App() {
     getMsg();
   }, []);
 
-  return <>{loading ? <h1>Loading...</h1> : <h1>dfsfsd {msg}</h1>}</>;
+  return <>{loading ? <h1>Loading...</h1> : <h1>{msg}</h1>}</>;
 }
 
 export default App;

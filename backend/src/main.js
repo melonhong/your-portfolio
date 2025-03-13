@@ -15,7 +15,7 @@ app.use(corsMiddleware);
 
 // 라우팅
 app.get("/", (req, res) => {
-  res.json({ message: "hello from backend" });
+  res.json({ message: "hello there?" });
 });
 
 // 서버 시작
