@@ -1,0 +1,19 @@
+{
+  "name": "your-portfolio",
+  "version": "1.0.0",
+  "description": "Post your portfolio and share it to others!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melonhong/YourPortfolio.git"
+  },
+  "author": "melonhong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/melonhong/YourPortfolio/issues"
+  },
+  "homepage": "https://github.com/melonhong/YourPortfolio#readme"
+}
