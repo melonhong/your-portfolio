@@ -1,0 +1,15 @@
+const express = require("express");
+const app = express();
+
+// 포트 설정
+app.set("port", process.env.PORT || 8080);
+
+// 라우팅
+app.get("/", (req, res) => {
+  res.send("hello");
+});
+
+// 서버 시작
+app.listen(app.get("port"), () => {
+  console.log(`Server started in port ${app.get("port")}`);
+});
