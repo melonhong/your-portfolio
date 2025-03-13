@@ -1,8 +1,12 @@
 const express = require("express");
 const app = express();
+const morgan = require("morgan");
 
 // 포트 설정
 app.set("port", process.env.PORT || 8080);
+
+// 로그 설정
+app.use(morgan("combined"));
 
 // 라우팅
 app.get("/", (req, res) => {
