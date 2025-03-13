@@ -10,7 +10,7 @@ app.use(morgan("combined"));
 
 // 라우팅
 app.get("/", (req, res) => {
-  res.send("hello");
+  res.json({ message: "hello from backend" });
 });
 
 // 서버 시작
