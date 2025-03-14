@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 
+const db = require("./models/index");
+
 const corsMiddleware = require("./middlewares/cors");
 
 // 포트 설정
@@ -14,6 +16,9 @@ app.use(morgan("combined"));
 app.use(corsMiddleware);
 
 app.use(express.json()); // 내장된 JSON 파싱 미들웨어 사용
+
+// 데이터베이스 접속
+db.sequelize.sync();
 
 // 라우팅
 app.get("/", (req, res) => {
