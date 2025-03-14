@@ -22,7 +22,12 @@ app.use(
   session({
     secret: "your_secret_key",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    cookie: {
+      secure: false, // HTTPS에서는 true (개발 환경에서는 false)
+      httpOnly: true, // JavaScript에서 접근 불가
+      sameSite: "lax", // 또는 "none" (교차 출처 요청 허용 시)
+    },
   })
 );
 
@@ -53,15 +58,12 @@ try {
 app.use("/auth", authRoutes);
 
 // 메인 페이지
-app.get("/", (req, res) => {
+app.get("/user", (req, res) => {
+  console.log(req.user);
   if (req.isAuthenticated()) {
-    res.send(`
-      <h1>Welcome, ${req.user.name}</h1>
-      <p>Email: ${req.user.email}</p>
-      <a href="/auth/logout">Logout</a> <!-- 로그아웃 링크 -->
-    `);
+    res.status(200).json(req.user); // 인증된 사용자 데이터를 JSON 응답으로 보냄
   } else {
-    res.send('<h1>Home</h1><a href="/auth/google">Login with Google</a>');
+    res.status(200).json(null);
   }
 });
 
