@@ -6,7 +6,6 @@ module.exports = {
       {
         email: "testuser@example.com",
         username: "testuser",
-        password: "password123", // 비밀번호는 일반적으로 해시 처리하여 저장해야 함
         createdAt: new Date(),
         updatedAt: new Date(),
       },
