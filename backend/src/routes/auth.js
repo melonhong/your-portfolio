@@ -1,6 +1,9 @@
 const express = require("express");
 const passport = require("passport");
 
+const UserController = require("../controllers/UserController");
+const userController = new UserController(); // UserController 인스턴스 생성
+
 const router = express.Router();
 
 // 인증 경로 설정
@@ -13,10 +16,7 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
-  (req, res) => {
-    // 성공적으로 인증된 경우
-    res.redirect("http://localhost:5173"); // 성공하면 프론트엔드로 이동
-  }
+  (req, res) => userController.findOrCreateUser(req, res)
 );
 
 router.get("/logout", (req, res) => {
