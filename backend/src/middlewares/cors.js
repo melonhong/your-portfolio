@@ -1,6 +1,6 @@
 const cors = require("cors");
 
-const allowedOrigins = ["http://localhost:5173"]; // 허용할 출처 목록
+const allowedOrigins = ["http://localhost:5173", "http://127.0.0.1:5173"]; // 허용할 출처 목록
 
 const corsOptions = {
   origin: function (origin, callback) {
