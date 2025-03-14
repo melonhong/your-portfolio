@@ -8,6 +8,9 @@ const db = require("./models/index");
 
 const corsMiddleware = require("./middlewares/cors");
 
+const authRoutes = require("./routes/auth");
+require("./config/passport"); // Google 전략 설정 파일 불러오기
+
 // 포트 설정
 app.set("port", process.env.PORT || 8080);
 
@@ -42,8 +45,16 @@ try {
 }
 
 // 라우팅
+// app.get("/", (req, res) => {
+//   res.json({ message: "hello from nodemon" });
+// });
+
+// 인증 라우트 사용
+app.use("/auth", authRoutes);
+
+// 메인 페이지
 app.get("/", (req, res) => {
-  res.json({ message: "hello from nodemon" });
+  res.send('<h1>Home</h1><a href="/auth/google">Login with Google</a>');
 });
 
 // 서버 시작
