@@ -18,7 +18,12 @@ app.use(corsMiddleware);
 app.use(express.json()); // 내장된 JSON 파싱 미들웨어 사용
 
 // 데이터베이스 접속
-db.sequelize.sync();
+try {
+  db.sequelize.sync();
+  console.log("Database connection has been established successfully.");
+} catch (error) {
+  console.error("Unable to connect to the database:", error);
+}
 
 // 라우팅
 app.get("/", (req, res) => {
