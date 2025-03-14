@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/main.js",
+    "seeder": "cd src && npx sequelize-cli db:seed:all && cd ..",
+    "dev": "npm run seeder && nodemon src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
