@@ -19,7 +19,7 @@ app.use(express.json()); // 내장된 JSON 파싱 미들웨어 사용
 
 // 데이터베이스 접속
 try {
-  db.sequelize.sync();
+  db.sequelize.sync({ force: true });
   console.log("Database connection has been established successfully.");
 } catch (error) {
   console.error("Unable to connect to the database:", error);
