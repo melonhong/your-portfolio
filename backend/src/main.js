@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const passport = require("passport");
+const session = require("express-session");
 
 const db = require("./models/index");
 
@@ -12,10 +14,24 @@ app.set("port", process.env.PORT || 8080);
 // 로그 설정
 app.use(morgan("combined"));
 
+// 세션 설정
+app.use(
+  session({
+    secret: "your_secret_key",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
+// Passport 초기화
+app.use(passport.initialize());
+app.use(passport.session());
+
 // CORS 에러 해결
 app.use(corsMiddleware);
 
-app.use(express.json()); // 내장된 JSON 파싱 미들웨어 사용
+// 내장된 JSON 파싱 미들웨어 사용
+app.use(express.json());
 
 // 데이터베이스 접속
 try {
