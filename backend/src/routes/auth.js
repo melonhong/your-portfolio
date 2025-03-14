@@ -19,4 +19,15 @@ router.get(
   }
 );
 
+router.get("/logout", (req, res) => {
+  // auth/logout 으로 해야 함
+  req.logout((err) => {
+    if (err) {
+      console.error("Logout error:", err);
+      return res.status(500).send("Logout error"); // 로그아웃 중 에러 발생 시 처리
+    }
+    res.redirect("/"); // 로그아웃 후 메인 페이지로 리디렉션
+  });
+});
+
 module.exports = router;
