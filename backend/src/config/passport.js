@@ -13,15 +13,23 @@ passport.use(
       callbackURL: "/auth/google/callback",
     },
     (accessToken, refreshToken, profile, done) => {
-      // 사용자 정보를 데이터베이스에 저장하거나, 세션에 저장하는 부분
-      return done(null, profile);
+      // 사용자의 정보를 데이터베이스에 저장하거나, 세션에 저장하는 부분
+      // 여기에서 사용자의 정보가 데이터베이스에 있는 경우를 가정
+      const user = {
+        username: profile.name,
+        email: profile.emails[0].value,
+      };
+      return done(null, user);
     }
   )
 );
 
 // 사용자 정보를 세션에 저장
 passport.serializeUser((user, done) => {
-  done(null, user);
+  done(null, {
+    username: user.username,
+    email: user.email,
+  });
 });
 
 // 세션에서 사용자 정보를 복원
