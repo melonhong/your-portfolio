@@ -54,7 +54,15 @@ app.use("/auth", authRoutes);
 
 // 메인 페이지
 app.get("/", (req, res) => {
-  res.send('<h1>Home</h1><a href="/auth/google">Login with Google</a>');
+  if (req.isAuthenticated()) {
+    res.send(`
+      <h1>Welcome, ${req.user.name}</h1>
+      <p>Email: ${req.user.email}</p>
+      <a href="/auth/logout">Logout</a> <!-- 로그아웃 링크 -->
+    `);
+  } else {
+    res.send('<h1>Home</h1><a href="/auth/google">Login with Google</a>');
+  }
 });
 
 // 서버 시작
