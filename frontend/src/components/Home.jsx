@@ -17,7 +17,7 @@ const Home = () => {
         setUser(data);
         setLoading(false);
       } catch (err) {
-        console.err(err);
+        console.error(err);
       }
     };
 
