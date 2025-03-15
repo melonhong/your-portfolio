@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const fetchUserData = async () => {
   // 백엔드에 사용자가 로그인 했는지 확인하는 API 요청 전달
   try {
-    const response = await fetch("http://localhost:8080/user", {
+    const response = await fetch(`http://localhost:8080/auth/check`, {
       method: "GET",
       credentials: "include",
     });
@@ -26,6 +26,7 @@ export const checkAuth = () => {
       if (data) {
         setUser(data);
       } else {
+        sessionStorage.setItem("previousURL", window.location.href);
         window.location.href = "/login";
       }
     };
