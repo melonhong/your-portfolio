@@ -9,6 +9,8 @@ const db = require("./models/index");
 const corsMiddleware = require("./middlewares/cors");
 
 const authRoutes = require("./routes/auth");
+const portfolioRouter = require("./routes/portfolioRouter");
+
 require("./config/passport"); // Google 전략 설정 파일 불러오기
 
 // 포트 설정
@@ -43,7 +45,7 @@ app.use(express.json());
 
 // 데이터베이스 접속
 try {
-  db.sequelize.sync({ force: true });
+  db.sequelize.sync();
   console.log("Database connection has been established successfully.");
 } catch (error) {
   console.error("Unable to connect to the database:", error);
@@ -56,6 +58,8 @@ try {
 
 // 인증 라우트 사용
 app.use("/auth", authRoutes);
+
+app.use("/portfolio", portfolioRouter);
 
 // 메인 페이지
 app.get("/user", (req, res) => {
