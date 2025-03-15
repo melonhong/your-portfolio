@@ -20,6 +20,9 @@ const PortfolioForm = () => {
       ).json();
       console.log(data);
       // 생성한 포트폴리오 디테일로 리다이렉션
+      if (data.redirectUrl !== null) {
+        window.location.href = data.redirectUrl;
+      }
     } catch (error) {
       console.error(error);
     }

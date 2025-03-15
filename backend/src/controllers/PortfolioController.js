@@ -29,7 +29,10 @@ class PortfolioController {
         userId,
         portfolioData
       );
-      res.status(200).json({ message: newPortfolio });
+      res.status(201).json({
+        newPortfolio,
+        redirectUrl: `http://localhost:5173/portfolio/${newPortfolio.dataValues.id}`,
+      });
     } catch (error) {
       console.error("Error in createPortfolio:", error); // 에러 출력
       res.status(400).json({ message: error.message });
