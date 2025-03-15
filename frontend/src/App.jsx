@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
+import PortfolioDetail from "./components/PortfolioDetail/PortfolioDetail";
 import PortfolioCreator from "./components/PortfolioCreator/PortfolioCreator";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/portfolio/create" element={<PortfolioCreator />} />
+        <Route path="/portfolio/:id" element={<PortfolioDetail />} />
       </Routes>
     </Router>
   );
