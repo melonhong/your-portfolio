@@ -6,7 +6,6 @@ class UserService {
   // 사용자 생성 또는 조회
   async findOrCreate({ originalUsername, email }) {
     try {
-      console.log(originalUsername);
       const [user, created] = await this.userModel.findOrCreate({
         where: { email: email }, // 이메일로 사용자 찾기
         defaults: {

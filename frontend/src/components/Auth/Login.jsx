@@ -7,6 +7,7 @@ const Login = () => {
 
   return (
     <>
+      <h1>Please login</h1>
       <button onClick={handleLogin}>Log in with Google</button>
     </>
   );

@@ -4,6 +4,8 @@ const passport = require("passport");
 const UserController = require("../controllers/UserController");
 const userController = new UserController(); // UserController 인스턴스 생성
 
+const checkAuth = require("../middlewares/checkAuth");
+
 const router = express.Router();
 
 // 인증 경로 설정
@@ -18,6 +20,11 @@ router.get(
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => userController.findOrCreateUser(req, res)
 );
+
+// 사용자 로그인 확인
+router.get("/check", checkAuth, (req, res) => {
+  res.status(200).json(req.user);
+});
 
 router.get("/logout", (req, res) => {
   // auth/logout 으로 해야 함

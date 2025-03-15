@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "seeder": "cd src && npx sequelize-cli db:seed:all && cd ..",
-    "dev": "npm run seeder && nodemon src/main.js",
+    "dev": "npm run seeder && node src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -22,6 +22,5 @@
     "passport-google-oauth2": "^0.2.0",
     "sequelize": "^6.37.6",
     "sequelize-cli": "^6.6.2"
->>>>>>> my-recovery-branch
   }
 }
