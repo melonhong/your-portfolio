@@ -26,6 +26,8 @@ export const checkAuth = () => {
       if (data) {
         setUser(data);
       } else {
+        // 사용자가 로그인하지 않았다면, 로그인 후 현재 페이지를 재방문하기 위해 현재 페이지 저장
+        // 현재 페이지는 Redirect 컴포넌트에서 리다이렉트 될 것임
         sessionStorage.setItem("previousURL", window.location.href);
         window.location.href = "/login";
       }
