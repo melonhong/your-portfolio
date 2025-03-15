@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "seeder": "cd src && npx sequelize-cli db:seed:all && cd ..",
-    "dev": "nodemon src/main.js && npm run seeder",
+    "dev": "npm run seeder && node src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
