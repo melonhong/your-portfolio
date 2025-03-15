@@ -1,29 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Login from "./Login.jsx";
+import { useUser } from "../../utils/useUser";
+import Login from "./Login";
 
 const Home = () => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const data = await (
-          await fetch("http://localhost:8080/user", {
-            method: "GET",
-            credentials: "include", // ✅ 쿠키 포함!
-          })
-        ).json();
-
-        setUser(data);
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchUserData();
-  }, []);
+  const { user, loading } = useUser();
 
   return (
     <div>
@@ -37,7 +17,6 @@ const Home = () => {
         </div>
       ) : (
         <div>
-          <h1>Please login</h1>
           <Login />
         </div>
       )}
