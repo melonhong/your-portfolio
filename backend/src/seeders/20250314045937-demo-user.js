@@ -2,19 +2,29 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert("users", [
+    const exist = await queryInterface.rawSelect(
+      "users",
       {
-        email: "testuser@example.com",
-        username: "testuser",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        where: { email: "testuser@example.com" },
       },
-    ]);
+      ["id"] // 특정 컬럼 선택 (존재 여부만 확인)
+    );
+
+    if (!exist) {
+      await queryInterface.bulkInsert("users", [
+        {
+          email: "testuser@example.com",
+          username: "testuser",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ]);
+    }
   },
 
   down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete("users", {
-      email: "testuser@example.com", // 삽입한 테스트 유저의 이메일로 삭제
+      email: "testuser@example.com",
     });
   },
 };
