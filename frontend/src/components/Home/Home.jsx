@@ -8,16 +8,17 @@ const Home = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/user", {
-          method: "GET",
-          credentials: "include", // ✅ 쿠키 포함!
-        });
-        const data = await response.json();
-        console.log(data);
+        const data = await (
+          await fetch("http://localhost:8080/user", {
+            method: "GET",
+            credentials: "include", // ✅ 쿠키 포함!
+          })
+        ).json();
+
         setUser(data);
         setLoading(false);
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
+        console.error(error);
       }
     };
 
