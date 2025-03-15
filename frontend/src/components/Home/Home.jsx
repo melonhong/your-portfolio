@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useUser } from "../../utils/useUser";
-import Login from "./Login";
+import { checkAuth } from "../../utils/checkAuth";
+import Login from "../Auth/Login";
 
 const Home = () => {
-  const { user, loading } = useUser();
+  const { user, loading } = checkAuth();
 
   return (
     <div>
