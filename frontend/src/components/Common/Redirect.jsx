@@ -1,6 +1,6 @@
 const Redirect = () => {
-  const previousURL = sessionStorage.getItem("previousURL");
-  window.location.href = previousURL;
+  const previousUrl = sessionStorage.getItem("previousUrl");
+  window.location.href = previousUrl;
   return (
     <>
       <h1>Redirect to somewhere...</h1>
