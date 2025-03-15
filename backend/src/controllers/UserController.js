@@ -16,7 +16,7 @@ class UserController {
         email,
       });
       req.session.userId = user.id; // 사용자 ID를 세션에 저장
-      res.redirect("http://localhost:5173"); // 프론트엔드로 리디렉션
+      res.redirect("http://localhost:5173/redirect");
     } catch (error) {
       console.error("Error in findOrCreateUser:", error); // 에러 출력
       res.status(400).json({ message: error.message }); // 에러 처리
