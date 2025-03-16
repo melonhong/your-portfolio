@@ -51,11 +51,18 @@ class PortfolioService {
     }
   }
 
-  // 모든 포트폴리오 조회 -> 페이지 단위로 바꾸기
-  async findAllByPage() {
+  // 페이지 단위로 포트폴리오 조회
+  async findAllByPage(page = 1, limit = 5) {
     try {
-      const portfolios = await this.portfolioModel.findAll({ where: {} });
-      return portfolios;
+      const offset = (page - 1) * limit; // 페이지에 따라 건너뛸 포트폴리오 수
+      // 조회한 포트폴리오와 전체 포트폴리오 수를 가져옴
+      const result = await this.portfolioModel.findAndCountAll({
+        limit: limit,
+        offset: offset,
+      });
+      const totalPage = result.count / limit; // 모든 페이지 수
+      const portfolios = result.rows; // 현재 페이지의 포트폴리오
+      return { totalPage, portfolios };
     } catch (error) {
       throw new Error(`Failed to get all portfolios: ${error.message}`);
     }
