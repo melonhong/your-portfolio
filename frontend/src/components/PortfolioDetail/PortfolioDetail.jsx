@@ -8,7 +8,7 @@ const PortfolioDetail = () => {
   useEffect(() => {
     const getPortfolio = async () => {
       const data = await (
-        await fetch(`http://localhost:8080/portfolio/${id}`, {
+        await fetch(`http://localhost:8080/portfolio/detail/${id}`, {
           method: "GET",
         })
       ).json();
