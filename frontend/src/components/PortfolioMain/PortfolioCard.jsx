@@ -1,19 +1,16 @@
 const PortfolioCard = ({ title, description, id }) => {
   return (
-    <div className="card" style="width: 18rem;">
-      <img src="..." className="card-img-top" alt="..." />
+    <div className="card mb-3">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1200px-No-Image-Placeholder.svg.png"
+        className="card-img-top"
+        alt="..."
+      />
       <div className="card-body">
-        <h5 className="card-title">
-          {/* 포트폴리오 제목 */}
-          Card title
-        </h5>
-        <p className="card-text">
-          {/* 포트폴리오 설명 */}
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        {/* 포트폴리오 링크 */}
-        <a href="#" className="btn btn-primary">
+        <h5 className="card-title">{title}</h5>
+        <p className="card-text">{description}</p>
+
+        <a href={`/portfolio/detail/${id}`} className="btn btn-primary">
           Go somewhere
         </a>
       </div>
