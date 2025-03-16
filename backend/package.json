@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "seeder": "cd src && npx sequelize-cli db:seed --seed 20250316121724-portfolio-main-test.js && cd ..",
-    "dev": "npm run seeder && node src/main.js",
+    "dev": "nodemon src/main.js & npm run seeder",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -21,6 +21,7 @@
     "passport": "^0.7.0",
     "passport-google-oauth2": "^0.2.0",
     "sequelize": "^6.37.6",
-    "sequelize-cli": "^6.6.2"
+    "sequelize-cli": "^6.6.2",
+    "wait-on": "^8.0.3"
   }
 }
