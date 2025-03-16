@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "seeder": "cd src && npx sequelize-cli db:seed:all && cd ..",
+    "seeder": "cd src && npx sequelize-cli db:seed --seed 20250316121724-portfolio-main-test.js && cd ..",
     "dev": "npm run seeder && node src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

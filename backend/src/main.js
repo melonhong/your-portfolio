@@ -45,7 +45,7 @@ app.use(express.json());
 
 // 데이터베이스 접속
 try {
-  db.sequelize.sync({ force: true });
+  db.sequelize.sync();
   console.log("Database connection has been established successfully.");
 } catch (error) {
   console.error("Unable to connect to the database:", error);
