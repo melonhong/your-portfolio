@@ -20,7 +20,7 @@ router.post("/create", (req, res) =>
 );
 
 // 모든 포트폴리오 조회
-router.get("/list", (req, res) =>
+router.get("/main", (req, res) =>
   portfolioController.findAllPortfolios(req, res)
 );
 

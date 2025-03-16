@@ -39,11 +39,13 @@ class PortfolioController {
     }
   }
 
-  // 모든 포트폴리오 조회
+  // 현재 페이지의 포트폴리오 조회
   async findAllPortfolios(req, res) {
     try {
-      const portfolios = await this.portfolioService.findAllByPage();
-      res.status(200).json(portfolios);
+      const page = parseInt(req.query.page) || 1; // 현재 페이지 번호
+      const limit = parseInt(req.query.limit) || 5; // 불러올 포트폴리오의 개수
+      const result = await this.portfolioService.findAllByPage(page, limit);
+      res.status(200).json(result);
     } catch (error) {
       console.error("Error in findAllPortfolios:", error);
       res.status(400).json({ message: error.message });
