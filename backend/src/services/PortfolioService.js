@@ -39,16 +39,25 @@ class PortfolioService {
           description: portfolioData.description,
         });
 
-        return newPortfolio; // 새 포트폴리오 반환
+        return newPortfolio;
       } else {
         // 이미 존재하는 포트폴리오가 있을 때의 처리
         throw new Error("Portfolio already exists for this user.");
       }
     } catch (error) {
-      // 에러 발생 시 유용한 정보 포함
       throw new Error(
         `Failed to create portfolio for user ID ${userId}: ${error.message}`
       );
+    }
+  }
+
+  // 모든 포트폴리오 조회 -> 페이지 단위로 바꾸기
+  async findAllByPage() {
+    try {
+      const portfolios = await this.portfolioModel.findAll({ where: {} });
+      return portfolios;
+    } catch (error) {
+      throw new Error(`Failed to get all portfolios: ${error.message}`);
     }
   }
 }

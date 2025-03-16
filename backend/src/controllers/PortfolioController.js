@@ -34,7 +34,18 @@ class PortfolioController {
         redirectUrl: `http://localhost:5173/portfolio/${newPortfolio.dataValues.id}`,
       });
     } catch (error) {
-      console.error("Error in createPortfolio:", error); // 에러 출력
+      console.error("Error in createPortfolio:", error);
+      res.status(400).json({ message: error.message });
+    }
+  }
+
+  // 모든 포트폴리오 조회
+  async findAllPortfolios(req, res) {
+    try {
+      const portfolios = await this.portfolioService.findAllByPage();
+      res.status(200).json(portfolios);
+    } catch (error) {
+      console.error("Error in findAllPortfolios:", error);
       res.status(400).json({ message: error.message });
     }
   }
