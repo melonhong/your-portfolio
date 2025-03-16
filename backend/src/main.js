@@ -45,21 +45,27 @@ app.use(express.json());
 
 // 데이터베이스 접속
 try {
-  db.sequelize.sync();
+  db.sequelize.sync({ force: true });
   console.log("Database connection has been established successfully.");
 } catch (error) {
   console.error("Unable to connect to the database:", error);
 }
 
 // 라우팅
-// app.get("/", (req, res) => {
-//   res.json({ message: "hello from nodemon" });
-// });
+app.get("/", (req, res) => {
+  res.json({ message: "hello from nodemon" });
+});
 
 // 인증 라우트 사용
 app.use("/auth", authRouter);
 
 app.use("/portfolio", portfolioRouter);
+
+// const PortfolioController = require("./controllers/PortfolioController");
+// const portfolioController = new PortfolioController();
+// app.get("/portfolios", (req, res) =>
+//   portfolioController.findAllPortfolios(req, res)
+// );
 
 app.get("/user", (req, res) => {
   console.log(req.user);
