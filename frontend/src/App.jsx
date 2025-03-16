@@ -14,7 +14,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/portfolio/create" element={<PortfolioCreator />} />
         <Route path="/portfolio/main" element={<PortfolioMain />} />
-        <Route path="/portfolio/:id" element={<PortfolioDetail />} />
+        <Route path="/portfolio/detail/:id" element={<PortfolioDetail />} />
         <Route path="/redirect" element={<Redirect />} />
       </Routes>
     </Router>
