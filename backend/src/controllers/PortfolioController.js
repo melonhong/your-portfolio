@@ -56,11 +56,12 @@ class PortfolioController {
   async updatePortfolio(req, res) {
     try {
       const editedPortfolio = req.body;
-      //const userId = req.session.userId; 유저 아이디와 포트폴리오의 유저 아이디가 같은지 확인
+      const userId = req.session.userId; // 유저 아이디와 포트폴리오의 유저 아이디가 같은지 확인
       const updatedPortfolio = await this.portfolioService.update(
+        userId,
         editedPortfolio
       );
-      console.log(updatedPortfolio);
+
       res.status(201).json({
         editedPortfolio,
         redirectUrl: `http://localhost:5173/portfolio/detail/${updatedPortfolio.dataValues.id}`,
