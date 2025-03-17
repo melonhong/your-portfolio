@@ -22,7 +22,6 @@ export const getPortfolio = () => {
   useEffect(() => {
     const getPortfolio = async () => {
       const data = await fetchPortfolio(id);
-      console.log(data);
       setPortfolio(data);
     };
 
