@@ -24,4 +24,9 @@ router.get("/main", (req, res) =>
   portfolioController.findAllPortfolios(req, res)
 );
 
+// 포트폴리오 수정
+router.patch("/edit/:id", (req, res) =>
+  portfolioController.updatePortfolio(req, res)
+);
+
 module.exports = router;
