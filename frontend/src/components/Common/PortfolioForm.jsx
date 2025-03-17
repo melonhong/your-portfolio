@@ -1,42 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import fetchPortfolio from "../../utils/uploadPortfolio";
 
-const PortfolioForm = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+const PortfolioForm = ({ method, prePortfolio = null }) => {
+  const [title, setTitle] = useState(
+    // 이전 포트폴리오가 있다면 제목을 이전 포트폴리오의 제목으로 설정
+    prePortfolio === null ? "" : prePortfolio.title
+  );
+  const [description, setDescription] = useState(
+    prePortfolio === null ? "" : prePortfolio.description
+  );
+  const id = prePortfolio === null ? null : prePortfolio.id;
 
-  // const fetchPortfolio = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     const portfolioData = { title, description };
-  //     const data = await (
-  //       await fetch("http://localhost:8080/portfolio/create", {
-  //         method: "POST",
-  //         credentials: "include",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify(portfolioData),
-  //       })
-  //     ).json();
-  //     console.log(data);
-  //     // 생성한 포트폴리오 디테일로 리다이렉션
-  //     if (data.redirectUrl !== null) {
-  //       window.location.href = data.redirectUrl;
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  const postPortfolio = (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
     const portfolioData = { title, description };
-    fetchPortfolio(portfolioData, "POST");
+    fetchPortfolio(portfolioData, method, id);
   };
 
   return (
-    <form onSubmit={postPortfolio}>
+    <form onSubmit={onSubmit}>
       <div className="mb-3">
         <label htmlFor="portfolio-title" className="form-label">
           Enter Portfolio Title
