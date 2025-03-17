@@ -1,35 +1,42 @@
 import React, { useEffect, useState } from "react";
+import fetchPortfolio from "../../utils/uploadPortfolio";
 
 const PortfolioForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const fetchPortfolio = async (event) => {
+  // const fetchPortfolio = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     const portfolioData = { title, description };
+  //     const data = await (
+  //       await fetch("http://localhost:8080/portfolio/create", {
+  //         method: "POST",
+  //         credentials: "include",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify(portfolioData),
+  //       })
+  //     ).json();
+  //     console.log(data);
+  //     // 생성한 포트폴리오 디테일로 리다이렉션
+  //     if (data.redirectUrl !== null) {
+  //       window.location.href = data.redirectUrl;
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  const postPortfolio = (event) => {
     event.preventDefault();
-    try {
-      const portfolioData = { title, description };
-      const data = await (
-        await fetch("http://localhost:8080/portfolio/create", {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(portfolioData),
-        })
-      ).json();
-      console.log(data);
-      // 생성한 포트폴리오 디테일로 리다이렉션
-      if (data.redirectUrl !== null) {
-        window.location.href = data.redirectUrl;
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    const portfolioData = { title, description };
+    fetchPortfolio(portfolioData, "POST");
   };
 
   return (
-    <form onSubmit={fetchPortfolio}>
+    <form onSubmit={postPortfolio}>
       <div className="mb-3">
         <label htmlFor="portfolio-title" className="form-label">
           Enter Portfolio Title
