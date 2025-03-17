@@ -31,7 +31,7 @@ class PortfolioController {
       );
       res.status(201).json({
         newPortfolio,
-        redirectUrl: `http://localhost:5173/portfolio/${newPortfolio.dataValues.id}`,
+        redirectUrl: `http://localhost:5173/portfolio/detail/${newPortfolio.dataValues.id}`,
       });
     } catch (error) {
       console.error("Error in createPortfolio:", error);
