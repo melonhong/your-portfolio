@@ -1,4 +1,5 @@
 import { getPortfolio } from "../../utils/getPortfolio";
+import PortfolioForm from "../Common/PortfolioForm";
 
 const PortfolioEdit = () => {
   const prePortfolio = getPortfolio();
