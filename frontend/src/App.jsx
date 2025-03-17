@@ -3,6 +3,7 @@ import Home from "./components/Home/Home";
 import PortfolioDetail from "./components/PortfolioDetail/PortfolioDetail";
 import PortfolioCreator from "./components/PortfolioCreator/PortfolioCreator";
 import PortfolioMain from "./components/PortfolioMain/PortfolioMain";
+import PortfolioEdit from "./components/PortfolioEdit/PortfolioEdit";
 import Login from "./components/Auth/Login";
 import Redirect from "./components/Common/Redirect";
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/portfolio/create" element={<PortfolioCreator />} />
         <Route path="/portfolio/main" element={<PortfolioMain />} />
         <Route path="/portfolio/detail/:id" element={<PortfolioDetail />} />
+        <Route path="/portfolio/edit/:id" element={<PortfolioEdit />} />
         <Route path="/redirect" element={<Redirect />} />
       </Routes>
     </Router>
