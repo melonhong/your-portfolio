@@ -60,7 +60,7 @@ class PortfolioService {
         limit: limit,
         offset: offset,
       });
-      const totalPage = result.count / limit; // 모든 페이지 수
+      const totalPage = Math.ceil(result.count / limit); // 모든 페이지 수
       const portfolios = result.rows; // 현재 페이지의 포트폴리오
       return { totalPage, portfolios };
     } catch (error) {
