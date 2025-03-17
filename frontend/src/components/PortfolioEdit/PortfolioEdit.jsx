@@ -1,12 +1,10 @@
-import { getPortfolio } from "../../utils/getPortfolio";
-import PortfolioForm from "../Common/PortfolioForm";
+import EditForm from "./EditForm";
 
 const PortfolioEdit = () => {
-  const prePortfolio = getPortfolio();
   return (
     <>
-      <h1>Create your portfolio!</h1>
-      <PortfolioForm method="PATCH" prePortfolio={prePortfolio} />
+      <h1>Edit your portfolio!</h1>
+      <EditForm />
     </>
   );
 };

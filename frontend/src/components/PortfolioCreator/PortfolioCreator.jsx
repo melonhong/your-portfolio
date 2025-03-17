@@ -1,4 +1,4 @@
-import PortfolioForm from "../Common/PortfolioForm";
+import CreateForm from "./CreateForm";
 import { checkAuth } from "../../utils/checkAuth";
 
 const PortfolioCreator = () => {
@@ -11,7 +11,7 @@ const PortfolioCreator = () => {
       ) : user ? (
         <>
           <h1>Create your portfolio!</h1>
-          <PortfolioForm method="POST" />
+          <CreateForm />
         </>
       ) : null}
     </>

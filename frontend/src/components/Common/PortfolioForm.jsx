@@ -1,30 +1,14 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import fetchPortfolio from "../../utils/uploadPortfolio";
-
-const PortfolioForm = ({ method, prePortfolio = null }) => {
-  const [title, setTitle] = useState(
-    // 이전 포트폴리오가 있다면 제목을 이전 포트폴리오의 제목으로 설정
-    prePortfolio === null ? "" : prePortfolio.title
-  );
-  const [description, setDescription] = useState(
-    prePortfolio === null ? "" : prePortfolio.description
-  );
-
-  const id = prePortfolio === null ? 0 : prePortfolio.id;
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-    const portfolioData = { id, title, description };
-    fetchPortfolio(portfolioData, method, id);
-  };
-
+const PortfolioForm = ({
+  title,
+  setTitle,
+  description,
+  setDescription,
+  onSubmit,
+}) => {
   return (
     <form onSubmit={onSubmit}>
       <div className="mb-3">
-        <label htmlFor="portfolio-title" className="form-label">
-          Enter Portfolio Title
-        </label>
+        <label htmlFor="portfolio-title" className="form-label"></label>
         <input
           value={title}
           onChange={(event) => setTitle(event.target.value)}

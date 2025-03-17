@@ -1,9 +1,11 @@
+import { useParams } from "react-router-dom";
 import { getPortfolio } from "../../utils/getPortfolio";
 import { checkAuth } from "../../utils/checkAuth";
 
 const PortfolioDetail = () => {
-  const { user, loading } = checkAuth();
-  const portfolio = getPortfolio();
+  const { user } = checkAuth();
+  const { id } = useParams();
+  const { portfolio, loading, error } = getPortfolio(id);
 
   return (
     <>
