@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import fetchPortfolio from "../../utils/uploadPortfolio";
 
 const PortfolioForm = ({ method, prePortfolio = null }) => {
@@ -9,7 +10,12 @@ const PortfolioForm = ({ method, prePortfolio = null }) => {
   const [description, setDescription] = useState(
     prePortfolio === null ? "" : prePortfolio.description
   );
-  const id = prePortfolio === null ? null : prePortfolio.id;
+
+  const { id } = useParams();
+  if (prePortfolio !== null && id !== prePortfolio.id) {
+    console.error("Url parameter id and pre-portfolio's id are not matching.");
+    return;
+  }
 
   const onSubmit = (event) => {
     event.preventDefault();
