@@ -1,10 +1,13 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { getPortfolio } from "../../utils/getPortfolio";
 
-const PortfolioDetail = () => {
+const PortfolioEdit = () => {
   const portfolio = getPortfolio();
+
   return (
     <>
-      <h1>Portfolio Detail</h1>
+      <h1>Portfolio Edit</h1>
       <div>
         {portfolio ? (
           <>
@@ -21,4 +24,4 @@ const PortfolioDetail = () => {
   );
 };
 
-export default PortfolioDetail;
+export default PortfolioEdit;
