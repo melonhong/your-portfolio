@@ -11,15 +11,11 @@ const PortfolioForm = ({ method, prePortfolio = null }) => {
     prePortfolio === null ? "" : prePortfolio.description
   );
 
-  const { id } = useParams();
-  if (prePortfolio !== null && id !== prePortfolio.id) {
-    console.error("Url parameter id and pre-portfolio's id are not matching.");
-    return;
-  }
+  const id = prePortfolio === null ? 0 : prePortfolio.id;
 
   const onSubmit = (event) => {
     event.preventDefault();
-    const portfolioData = { title, description };
+    const portfolioData = { id, title, description };
     fetchPortfolio(portfolioData, method, id);
   };
 
