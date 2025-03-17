@@ -1,32 +1,31 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 
-const fetchPortfolio = async (id) => {
-  try {
-    const response = await (
-      await fetch(`http://localhost:8080/portfolio/detail/${id}`, {
-        method: "GET",
-      })
-    ).json();
-    return response;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
-
-export const getPortfolio = () => {
-  const [portfolio, setPortfolio] = useState();
-  const { id } = useParams();
+export const getPortfolio = (id) => {
+  const [portfolio, setportfolio] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getPortfolio = async () => {
-      const data = await fetchPortfolio(id);
-      setPortfolio(data);
+    const fetchPortfolio = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `http://localhost:8080/portfolio/detail/${id}`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setportfolio(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    getPortfolio();
+    fetchPortfolio();
   }, [id]);
 
-  return portfolio;
+  return { portfolio, loading, error };
 };
