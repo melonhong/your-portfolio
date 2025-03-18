@@ -51,6 +51,26 @@ class PortfolioController {
       res.status(400).json({ message: error.message });
     }
   }
+
+  // 포트폴리오 수정
+  async updatePortfolio(req, res) {
+    try {
+      const editedPortfolio = req.body;
+      const userId = req.session.userId; // 유저 아이디와 포트폴리오의 유저 아이디가 같은지 확인
+      const updatedPortfolio = await this.portfolioService.update(
+        userId,
+        editedPortfolio
+      );
+
+      res.status(201).json({
+        editedPortfolio,
+        redirectUrl: `http://localhost:5173/portfolio/detail/${updatedPortfolio.dataValues.id}`,
+      });
+    } catch (error) {
+      console.error("Error in createPortfolio:", error);
+      res.status(400).json({ message: error.message });
+    }
+  }
 }
 
 module.exports = PortfolioController;

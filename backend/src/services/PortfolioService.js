@@ -67,6 +67,35 @@ class PortfolioService {
       throw new Error(`Failed to get all portfolios: ${error.message}`);
     }
   }
+
+  // 포트폴리오 수정
+  async update(userId, editedPortfolio) {
+    try {
+      const { id, title, description } = editedPortfolio;
+
+      const prePortfolio = await this.findByPortfolioId(id);
+      if (!prePortfolio) {
+        throw new Error("Portfolio doesn't exist.");
+      }
+
+      if (prePortfolio.user_id !== userId) {
+        throw new Error("You have no permission.");
+      }
+
+      const [affectedRows] = await this.portfolioModel.update(
+        { title, description },
+        { where: { id: id } }
+      );
+
+      if (affectedRows === 0) {
+        throw new Error("Failed to update a portfolio.");
+      }
+
+      return await this.findByPortfolioId(id);
+    } catch (error) {
+      throw new Error(`Failed to update a portfolio: ${error.message}`);
+    }
+  }
 }
 
 module.exports = PortfolioService;

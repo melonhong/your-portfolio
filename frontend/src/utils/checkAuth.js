@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 const fetchUserData = async () => {
   // 백엔드에 사용자가 로그인 했는지 확인하는 API 요청 전달
   try {
-    const response = await fetch(`http://localhost:8080/auth/check`, {
-      method: "GET",
-      credentials: "include",
-    });
-    return await response.json();
+    const response = await (
+      await fetch(`http://localhost:8080/auth/check`, {
+        method: "GET",
+        credentials: "include",
+      })
+    ).json();
+    return response;
   } catch (error) {
     console.error(error);
     return null;

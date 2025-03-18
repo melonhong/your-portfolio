@@ -23,7 +23,10 @@ router.get(
 
 // 사용자 로그인 확인
 router.get("/check", checkAuth, (req, res) => {
-  res.status(200).json(req.user);
+  res.status(200).json({
+    user: req.user,
+    userId: req.session.userId,
+  });
 });
 
 router.get("/logout", (req, res) => {

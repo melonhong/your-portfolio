@@ -1,26 +1,41 @@
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getPortfolio } from "../../utils/getPortfolio";
 
-const PortfolioForm = () => {
+const EditForm = () => {
+  const { id } = useParams();
+  const { portfolio, loading, error } = getPortfolio(id);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const fetchPortfolio = async (event) => {
-    event.preventDefault();
+  useEffect(() => {
+    if (portfolio) {
+      console.log(portfolio);
+      setTitle(portfolio.title); // portfolio가 업데이트되면 title 상태를 설정
+      setDescription(portfolio.description); // 필요시 description도 설정
+    }
+  }, [portfolio]);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  const patchPortfolio = async (event) => {
     try {
-      const portfolioData = { title, description };
+      event.preventDefault();
+      const editedPortfolio = { id, title, description };
       const data = await (
-        await fetch("http://localhost:8080/portfolio/create", {
-          method: "POST",
+        await fetch(`http://localhost:8080/portfolio/edit/${id}`, {
+          method: "PATCH",
           credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(portfolioData),
+          body: JSON.stringify(editedPortfolio),
         })
       ).json();
-      console.log(data);
-      // 생성한 포트폴리오 디테일로 리다이렉션
-      if (data.redirectUrl !== null) {
+
+      // 생성 또는 수정한 포트폴리오 디테일로 리다이렉션
+      if (data.redirectUrl) {
         window.location.href = data.redirectUrl;
       }
     } catch (error) {
@@ -29,11 +44,9 @@ const PortfolioForm = () => {
   };
 
   return (
-    <form onSubmit={fetchPortfolio}>
+    <form onSubmit={patchPortfolio}>
       <div className="mb-3">
-        <label htmlFor="portfolio-title" className="form-label">
-          Enter Portfolio Title
-        </label>
+        <label htmlFor="portfolio-title" className="form-label"></label>
         <input
           value={title}
           onChange={(event) => setTitle(event.target.value)}
@@ -59,4 +72,4 @@ const PortfolioForm = () => {
   );
 };
 
-export default PortfolioForm;
+export default EditForm;

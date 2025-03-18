@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import PortfolioForm from "./PortfolioForm";
+import CreateForm from "./CreateForm";
 import { checkAuth } from "../../utils/checkAuth";
-import Login from "../Auth/Login";
 
 const PortfolioCreator = () => {
   const { user, loading } = checkAuth();
@@ -13,11 +11,9 @@ const PortfolioCreator = () => {
       ) : user ? (
         <>
           <h1>Create your portfolio!</h1>
-          <PortfolioForm />
+          <CreateForm />
         </>
-      ) : (
-        <Login />
-      )}
+      ) : null}
     </>
   );
 };
