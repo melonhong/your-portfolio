@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getPortfolio } from "../../utils/getPortfolio";
+import PortfolioForm from "../Common/PortfolioForm";
 
 const EditForm = () => {
   const { id } = useParams();
@@ -44,31 +45,15 @@ const EditForm = () => {
   };
 
   return (
-    <form onSubmit={patchPortfolio}>
-      <div className="mb-3">
-        <label htmlFor="portfolio-title" className="form-label"></label>
-        <input
-          value={title}
-          onChange={(event) => setTitle(event.target.value)}
-          type="text"
-          className="form-control"
-          id="portfolio-title"
-          placeholder="My Awesome Portfolio"
-        />
-      </div>
-      <div className="mb-3">
-        <div className="input-group">
-          <span className="input-group-text">Description</span>
-          <textarea
-            value={description}
-            onChange={(event) => setDescription(event.target.value)}
-            className="form-control"
-            aria-label="Descript your portfolio"
-          ></textarea>
-        </div>
-      </div>
-      <input className="btn btn-primary" type="submit" value="Submit" />
-    </form>
+    <>
+      <PortfolioForm
+        onSubmit={patchPortfolio}
+        title={title}
+        setTitle={setTitle}
+        description={description}
+        setDescription={setDescription}
+      />
+    </>
   );
 };
 
